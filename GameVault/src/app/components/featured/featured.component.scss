@@ -1,0 +1,287 @@
+
+
+.shadow{
+  background-color: rgba(0,0,0,0.1);
+  box-shadow: none;
+  //border-radius: 10px;
+}
+
+.slot-title-container{
+  width: 100%;
+  height: 10vh;
+  
+  .slot-tilte{
+    font-family: sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 5vh;
+    color: white;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    padding-top: 3.5%;
+    /*display: inline;*/
+    width: 100%;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
+  }
+}
+.slot{
+  height: 70vh;
+  width: 100%;
+  
+}
+
+.swiper-slot{
+  width: 80%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+
+
+.card {
+    width: 220px;
+    height: auto;
+    background-color: transparent;
+    //border: 1px solid rgb(255,214,92);
+    box-shadow: 3px 3px 1px rgb(255,214,92);
+    border-radius: 0px;
+    transition: transform 0.3s ease;
+
+    &:hover{
+      background-color: #ffffff2b;
+      box-shadow: 3px 3px 1px rgba(255, 214, 92, 0.7);
+      cursor: pointer;
+      transform: translateY(-40px) scale(1.15);
+    }
+  }
+
+  .game-item {
+    display: flex;
+    text-align: center;
+  }
+
+  .game-container-recently-released, .game-container-recent {
+    margin: 15px;
+    width: 90%;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    gap: 25px;
+
+  }
+    
+  .image-container{
+    margin: 3%;
+    background-size: cover;
+    height: 250px;
+  }
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .game-title {
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-family: 'Azonix Regular', sans-serif;
+    font-weight: 600;
+    padding: 5px;
+  }
+
+  .container-top, .container-recently-released, .container-recent{
+    margin-top: 1rem;
+    width: 89%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .parent-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .searchbar-container {
+    display: flex;
+    align-items: center;
+    background-color: #454343;
+    padding: 10px;
+    border-radius: 0px;
+
+    border-top: none;
+    border-bottom:white  5px solid;
+    border-left:  white  5px solid;
+    border-right: white  5px solid;
+
+  }
+
+  .searchbar {
+    width: 24.45vw;
+    height: 20px;
+    background-color: transparent;
+    font-family: 'Azonix Regular', sans-serif;
+    color: white;
+    border: none;
+  }
+
+  .search-icon {
+    color: white;
+    margin-right: 10px;
+  }
+
+  .featured-header, .featured-header-recent{
+    font-family: 'Azonix Regular', sans-serif;
+    color: white;
+    text-align: left;
+    margin: 2% 0% 0% 11%;
+    font-size: 50px;
+    }
+
+    .game-recent-day {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      background-color: rgba(69, 67, 67, 0.9);
+      font-family: 'Azonix Regular', sans-serif;
+      font-weight: 600;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 60px;
+      width: 180px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+  
+
+
+
+    .game-recent-day p{
+      text-align: center;
+      margin: 5px;
+    }
+    
+    .card:hover .game-recent-day {
+      opacity: 1;
+    }
+
+
+    .recent-games {
+      position: relative;
+    }
+
+
+
+
+
+
+    .costum-border-left {
+      --b: 6px;  /* border thickness*/
+      --s: 60px; /* size of the corner*/
+      --g: 14px; /* the gap*/
+      --c: #EDC951; 
+      --c2: white;
+      
+      padding: calc(var(--b) + var(--g));
+      background-image:
+        conic-gradient(from  90deg at top    var(--b) left  var(--b),#0000 25%,var(--c) 0),
+        conic-gradient(from -90deg at bottom var(--b) right var(--b),#0000 25%,var(--c2) 0);
+      background-position:
+        var(--_p,0%) var(--_p,0%),
+        calc(100% - var(--_p,0%)) calc(100% - var(--_p,0%));
+      background-size: var(--s) var(--s);
+      background-repeat: no-repeat;
+      transition: 
+        background-position .3s var(--_i,.3s), 
+        background-size .3s calc(.3s - var(--_i,.3s));
+    }
+    
+    .costum-border-right {
+      --b: 6px;  /* border thickness*/
+      --s: 60px; /* size of the corner*/
+      --g: 14px; /* the gap*/
+      --c: #EDC951; 
+      --c2: white;
+    
+      padding: calc(var(--b) + var(--g));
+      background-image:
+        conic-gradient(from 180deg at top    var(--b) right var(--b),#0000 25%,var(--c) 0),
+        conic-gradient(from   0deg at bottom var(--b) left  var(--b),#0000 25%,var(--c2) 0);
+      background-position:
+        calc(100% - var(--_p,0%)) var(--_p,0%),
+        var(--_p,0%) calc(100% - var(--_p,0%));
+      background-size: var(--s) var(--s);
+      background-repeat: no-repeat;
+      transition: 
+        background-position .3s var(--_i,.3s), 
+        background-size .3s calc(.3s - var(--_i,.3s));
+    }
+    .costum-border-anim-right {
+      --b: 6px;  /* border thickness*/
+      --s: 60px; /* size of the corner*/
+      --g: 14px; /* the gap*/
+      --c: #EDC951; 
+      --c2: white;
+    
+      padding: calc(var(--b) + var(--g));
+      background-image:
+        conic-gradient(from 180deg at top    var(--b) right var(--b),#0000 25%,var(--c) 0),
+        conic-gradient(from   0deg at bottom var(--b) left  var(--b),#0000 25%,var(--c2) 0);
+      background-position:
+        calc(100% - var(--_p,0%)) var(--_p,0%),
+        var(--_p,0%) calc(100% - var(--_p,0%));
+      background-size: var(--s) var(--s);
+      background-repeat: no-repeat;
+      transition: 
+        background-position .3s var(--_i,.3s), 
+        background-size .3s calc(.3s - var(--_i,.3s));
+    }
+    
+    .costum-border-anim-right:hover {
+      background-size: calc(100% - var(--g)) calc(100% - var(--g));
+      --_p: calc(var(--g)/2);
+      --_i: 0s;
+    }
+    
+    .costum-border-anim-left {
+      --b: 6px;  /* border thickness*/
+      --s: 60px; /* size of the corner*/
+      --g: 14px; /* the gap*/
+      --c: #EDC951; 
+      --c2: white;
+      
+      padding: calc(var(--b) + var(--g));
+      background-image:
+        conic-gradient(from  90deg at top    var(--b) left  var(--b),#0000 25%,var(--c) 0),
+        conic-gradient(from -90deg at bottom var(--b) right var(--b),#0000 25%,var(--c2) 0);
+      background-position:
+        var(--_p,0%) var(--_p,0%),
+        calc(100% - var(--_p,0%)) calc(100% - var(--_p,0%));
+      background-size: var(--s) var(--s);
+      background-repeat: no-repeat;
+      transition: 
+        background-position .3s var(--_i,.3s), 
+        background-size .3s calc(.3s - var(--_i,.3s));
+    }
+    
+    .costum-border-anim-left:hover {
+      background-size: calc(100% - var(--g)) calc(100% - var(--g));
+      --_p: calc(var(--g)/2);
+      --_i: 0s;
+    }
+    

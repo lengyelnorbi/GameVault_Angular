@@ -1,0 +1,15 @@
+2023.03.10 22:20:31 INFO  Started: Metals version 0.11.11 in workspace 'E:\Programming\Angular\GameVault\gamer-list\GameVault' for client Visual Studio Code 1.75.1.
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+SLF4J: Class path contains SLF4J bindings targeting slf4j-api versions 1.7.x or earlier.
+SLF4J: Ignoring binding found at [jar:file:/C:/Users/gyarm/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/com/outr/scribe-slf4j_2.13/3.11.0/scribe-slf4j_2.13-3.11.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See https://www.slf4j.org/codes.html#ignoredBindings for an explanation.
+2023.03.10 22:20:33 INFO  time: initialize in 1.77s
+2023.03.10 22:20:37 WARN  Build server is not auto-connectable.
+2023.03.10 22:20:37 WARN  no build tool detected in workspace 'E:\Programming\Angular\GameVault\gamer-list\GameVault'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Mar 10, 2023 10:20:44 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2023.03.10 23:37:29 INFO  Shutting down server
+2023.03.10 23:37:29 INFO  shutting down Metals
+2023.03.10 23:37:29 INFO  Exiting server

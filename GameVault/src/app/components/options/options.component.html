@@ -1,0 +1,120 @@
+<app-navigation></app-navigation>
+
+<div class="options-container">
+  <h1 class="options-th">
+    <span class="managetext"> {{ username }}'s </span>
+    <span class="gold-text-v2">options</span>
+  </h1>
+
+  <div class="options-div">
+    <h2>Username</h2>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Username"
+        id="usernameInput"
+        [value]="username"
+      />
+    </mat-form-field>
+
+    <h2>Bio</h2>
+    <mat-form-field>
+      <textarea
+        matInput
+        type="text"
+        placeholder="About You"
+        id="bioInput"
+        [value]="bio"
+        rows="10"
+        cols="50"
+      ></textarea>
+    </mat-form-field>
+
+    <h2>Profile Picture</h2>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="pfpUrl"
+        id="pfpInput"
+        [value]="pfpUrl"
+      />
+    </mat-form-field>
+
+    <h2>Background Image</h2>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="backgroundUrl"
+        id="backgroundInput"
+      />
+    </mat-form-field>
+
+    <h2>Favorite Genre(s)</h2>
+    <mat-form-field>
+      <mat-label>Favorite categories:</mat-label>
+      <mat-select #selectGenres [formControl]="genres" multiple>
+        <mat-option *ngFor="let genre of genresList" [value]="genre">
+          {{ genre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span class="fav-list">{{ parseList(favorite) }}</span>
+
+    <h2>Favorite Studio(s)</h2>
+    <mat-form-field>
+      <mat-label>Favorite studios:</mat-label>
+      <mat-select #selectStudios [formControl]="studios" multiple>
+        <mat-option *ngFor="let studio of studioList" [value]="studio">
+          {{studio}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span class="fav-list">{{parseList(studio)}}</span>
+
+    <h2>Social Media</h2>
+
+    <h3>Steam</h3>
+    <mat-form-field>
+      <span matPrefix>steamcommunity.com/id/</span>
+      <input
+        matInput
+        type="text"
+        id="steamIdInput"
+        [value]="steamId"
+        placeholder="Enter your steam username"
+      />
+    </mat-form-field>
+
+    <h3>Twitter</h3>
+    <mat-form-field>
+      <span matPrefix>twitter.com/</span>
+      <input
+        matInput
+        type="text"
+        id="twitterIdInput"
+        [value]="twitterId"
+        placeholder="Enter your twitter username"
+      />
+    </mat-form-field>
+
+    <h3>Discord</h3>
+    <mat-form-field>
+      <span matPrefix>discord.gg/</span>
+      <input
+        matInput
+        type="text"
+        id="discordIdInput"
+        [value]="discordId"
+        placeholder="Enter your discord username and tag"
+      />
+    </mat-form-field>
+
+    <br />
+    <button type="submit" id="" (click)="submit()" class="options-button">
+      Save
+    </button>
+  </div>
+</div>

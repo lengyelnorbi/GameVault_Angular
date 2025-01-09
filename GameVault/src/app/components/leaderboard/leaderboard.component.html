@@ -1,0 +1,33 @@
+<!--<app-navigation></app-navigation>-->
+<div class="main-content">
+    <div class="toggled-content">
+        <div class="managetitle">
+            <span class="managetext">Leader</span>
+            <span class="gold-text-v2">board</span>
+        </div>
+        <div id="table-div">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Username</th>
+                        <th>Completes</th>
+                        <th>Likes</th>
+                        <th>Dislikes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users$ | async; let i = index" [ngClass]="getTableRowClass(i)">
+                        <td class="tdplacement">#{{i+1}}</td>
+                        <td class="tdpic"><img src="{{user.pfpUrl}}" class="profile-pic"></td>
+                        <td class="tdname">{{ user.username }}</td>
+                        <td class="tdnum">{{ user.completedList.length }}</td>
+                        <td class="tdnum">{{ user.likedList.length }}</td>
+                        <td class="tdnum">{{ user.dislikedList.length }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

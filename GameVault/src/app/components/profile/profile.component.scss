@@ -1,0 +1,606 @@
+body {
+  background: #3d3e4e;
+
+}
+
+.game-list-container {
+  margin-top: 2%;
+  margin-right: 50px;
+  margin-left: 50px;
+  width: 100%;
+}
+
+.game-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 25px;
+}
+
+#followbutton {
+  font-family: Azonix Regular;
+  background-color: rgb(255,214,92);
+  width: 10vh;
+  color: black;
+  border-radius: 0px;
+  border:#1c1d27 4px solid;
+  z-index: 0;
+}
+
+#unfollowbutton {
+  font-family: Azonix Regular;
+  background-color: gray;
+  width: 10vh;
+  border-radius: 0px;
+  border:#1c1d27 4px solid;
+  z-index: 0;
+}
+
+#unfollowbutton:hover {
+  font-family: Azonix Regular;
+  background-color: red;
+  width: 10vh;
+  border-radius: 0px;
+  border:#1c1d27 4px solid;
+  z-index: 0;
+}
+
+.socialbutton {
+  border-radius: 50%;
+  margin-left: 10vw;
+  border: 0px;
+  height: 2vw;
+  width: 2vw;
+  //margin-0;
+  margin-top: -1.7vw;
+  background-color: rgb(255,214,92);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: bold;
+  color: black;
+}
+
+.socialcounter {
+  //margin-bottom: -2.2vw;
+  margin-top: 2vw;
+  color: black;
+}
+
+.socialbutton:hover {
+  cursor: pointer;
+}
+
+#followbuttonsp {
+  //margin-left: -10vh;
+  left: 0;
+}
+
+.followbuttonsdiv {
+  left: 0;
+}
+
+.image-container{
+
+  background-size: cover;
+  height: 150px; /* set the height to the same value as width */
+}
+
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game-title {
+  //color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  font-family: 'Azonix Regular', sans-serif;
+  font-weight: 600;
+  padding: 5px;
+}
+
+
+.parent-container {
+  display: flex;
+  justify-content: center;
+}
+
+.pfp {
+  height: 18vw;
+  width: 16vw;
+  object-fit: cover;
+  object-position: center;
+  
+  box-shadow:rgb(255,214,92) -10px 10px;
+
+  margin-top: 4%;
+  margin-left: -2%;
+}
+
+.username-text{
+  //font-family: 'Azonix Regular', sans-serif;
+  position: absolute;
+  margin-left: 15vw;
+  margin-bottom: 10vh;
+  bottom: 0;
+  margin-top: 16.3%;
+  color: white;
+}
+
+.settings-icon {
+  margin-top: 16.3%;
+  margin-left: 59.2vw;
+  color: white;
+  cursor: pointer;
+    
+  &:hover{
+    color: rgb(255,214,92);
+  }
+}
+
+.follows{
+  margin-left: 1.5vw;
+  bottom: 0;
+  margin-top: 16.3%;
+  color: white;
+}
+
+.followers{
+  margin-left: 1.5vw;
+  bottom: 0;
+  margin-top: 16.3%;
+  color: white;
+}
+
+.profile-header {
+  display: flex;
+  width: 100%;
+}
+
+.fav-text{
+  font-size: 25px;
+}
+
+.fav-item {
+  font-weight: bold;
+  font-size: larger;
+}
+
+.fav-list {
+  margin-bottom: 2vh;
+  display: inline-block;
+}
+
+.header-container {
+  
+}
+
+.profile-container{
+  //background-color: rgb(227, 226, 222);
+  margin: 1% 5% 0% 5%;
+  position: relative;
+}
+
+.header-section{
+  background-color: #1c1d27;
+  background-image: url(https://mangadigest.files.wordpress.com/2018/10/wp-1540653647844-462018501.jpeg);
+  background-size: cover;
+  position: relative;
+
+  height: 35vh;
+
+  border-bottom: rgb(255,214,92) solid 5px;
+}
+
+// .header-section::after {
+//   content: "";
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   height: 100px;
+//   background-image: linear-gradient(to bottom, rgba(28,29,39,0) 0%, rgba(28,29,39,1) 100%);
+// }
+
+.content-selector button {
+  flex: 1 0 auto;
+  max-width: 200px;
+  background-color: transparent;
+  // border-left: 5px solid white;
+  // border-right: 5px solid white;
+
+  border-left: none;
+  border-right:  none;
+  border-top: none;
+  border-bottom: none;
+
+  color: white;
+  font-family: 'Azonix Regular', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+}
+.content-selector button:hover {
+  background-color: #1311112a;
+  color: #fff;
+}
+
+.content-selector button.selected {
+  //border-bottom: 5px solid white;
+  background-color: #2f3142b4;
+}
+
+.active {
+  background-color: #fff;
+}
+
+.icon-container {
+  margin: 7% 0% 0% 0%;
+  right: 9vw;
+  left: 0; 
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3vh; 
+  color: white;
+  
+}
+.icon-container span {
+  display: flex; /* Add flex display */
+  align-items: center; /* Center vertically */
+}
+
+.icon{
+  margin-left: 10px;
+}
+
+#like{
+  &:hover{
+    color: rgb(47, 207, 47);
+  }
+}
+
+#dislike{
+  &:hover{
+    color: rgba(218, 16, 16, 0.904);
+  }
+}
+
+#completed{
+  &:hover{
+    color: rgb(19, 130, 145);
+  }
+}
+
+#plan{
+  &:hover{
+    color: rgb(252, 248, 34);
+  }
+}
+
+.overview-container {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  gap: 0vw;
+  margin-left: 0vw;
+  color: white;
+}
+
+.about-container {
+  position: relative;
+}
+
+.about-text {
+  font-family: 'Azonix Regular', sans-serif;
+  font-size: 20px;
+  margin: 0;
+ 
+  bottom: 0;
+  transform-origin: bottom right;
+  display: flex;
+  margin-left: 6vw;
+}
+
+.bio{
+  background-color: #1c1d27;
+  width: 25vw;
+  height: 35vh;
+  border: 5px solid rgb(255,214,92);
+  margin-right: 4vw;
+  margin-left: 6vw;
+}
+
+.favorites-text {
+  font-family: 'Azonix Regular', sans-serif;
+  font-size: 20px;
+  margin: 0;
+ 
+  bottom: 0;
+  transform-origin: bottom right;
+  display: flex;
+}
+
+.stats{
+  background-color: #1c1d27;
+  width:  30vw;
+  height: 35vh;
+  border: 5px solid rgb(255,214,92);
+  margin-right: 3vw;
+}
+
+.clear {
+  clear: both;
+}
+
+.game-table img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+table {
+width: 80%;
+border-collapse: collapse;
+overflow: hidden;
+box-shadow: 0 0 20px rgba(0,0,0,0.1);
+table-layout: fixed;
+
+margin: 0 auto;
+}
+
+th,
+td {
+padding: 15px;
+background-color: rgba(255,255,255,0.2);
+color: #fff;
+}
+
+th {
+text-align: center;
+}
+
+thead {
+  background: linear-gradient( 90deg, hsl(40, 100%, 62%) 45%,rgb(255,214,92) 95%);
+ th{
+     color: black;
+     font-family: "Avenir Next", sans-serif;
+     font-weight: 900;
+     font-size: 15px;
+     text-transform: uppercase;
+     font-style: italic;
+     letter-spacing: 0.05em;
+     text-align: center;
+
+ }
+}
+
+tbody {
+tr {
+      text-align: center;
+      font-family: "Avenir Next", sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+  &:hover {
+    background-color: rgba(255,255,255,0.3);
+  }
+}
+td {
+  position: relative;
+  &:hover {
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -9999px;
+      bottom: -9999px;
+      background-color: rgba(255,255,255,0.2);
+      z-index: -1;
+    }
+  }
+}
+}
+
+.pulse:after, 
+.pulse:focus {
+animation: pulse 1s;
+box-shadow: 0 0 0 2em transparent;
+}
+
+.first-th{
+  color: white;
+}
+
+.sidebar {
+  position: absolute;
+  left: 45px;
+  top: 200px;
+  width: 150px;
+  background-color: #333;
+  padding: 20px;
+  border: 1px solid rgb(255,214,92);
+}
+
+.sidebar button {
+  display: block;
+  margin-bottom: 10px;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+
+
+  &:hover{
+    background-color: rgb(255,214,92);
+    color: black;
+  }
+}
+
+.sidebar button.selected {
+  background-color: rgb(255,214,92);
+}
+
+.users-pfp{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.users-list{
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.content-selector:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -30px;
+  width: 0;
+  height: 0;
+  border: 1.4vw solid transparent;
+  transform: skewX(-30deg);
+  background-color: #1c1d27;
+  z-index: -4;
+}
+
+.content-selector {
+  position: relative;
+  width: 30vw;
+  height: 2.7vw;
+  background-color: #1c1d27;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2vw;
+  margin: 0 auto;
+  margin-top: -2.7%;
+  z-index: 100;
+}
+
+.content-selector:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -30px;
+  width: 0;
+  height: 0;
+  border: 1.4vw solid transparent;
+  transform: skewX(30deg);
+  background-color: #1c1d27;
+  z-index: -2;
+}
+
+
+
+.profile-content{
+  position: relative;
+  background-color: #1c1d27b4;
+  margin: 0% 10% 5% 10%;
+  padding: 5% 5% 5% 5%;
+  z-index: -5;
+  color: white;
+}
+
+.user-cards {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.card {
+  display: flex;
+  background-color: white;
+  border-radius: 0px;
+  overflow: hidden;
+  width: 100%;
+  height: 150px; /* set a fixed height for all cards */
+  min-width: 400px; /* set a minimum width for the card */
+  max-width: 400px; /* set a maximum width for the card */
+
+  margin: 0 10px 20px 0px;
+}
+
+.card img {
+  width: 50%; /* set a fixed width for the profile picture */
+  height: 100%; /* set a fixed height for the profile picture */
+  object-fit: cover; /* crop the image to fill the space while preserving aspect ratio */
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  width: calc(100% - 100px); /* set the width of the card details to fill the remaining space */
+  color: black;
+}
+
+#chartToggleButton {
+  text-align: center;
+  margin-left: 40%;
+  font-family: Azonix Regular;
+  background-color: rgb(255,214,92);
+  width: 20vh;
+  height: 5vh;
+  color: black;
+  border-radius: 0px;
+  border:#1c1d27 4px solid;
+  z-index: 0;
+}
+
+#chartToggleButton:hover {
+  background-color: rgb(255, 229, 151);
+}
+
+.card h2 {
+  margin: 0;
+  white-space: normal; /* allow the text to wrap to the next line */
+  text-overflow: ellipsis; /* cut off text with ... if it overflows the container */
+  overflow: hidden; /* hide text that overflows the container */
+  color: black;
+}
+
+.social-content h1{
+  color: white;
+  font-family: Azonix Regular;
+  font-size: 2.5vh;
+  margin-left: 2vw;
+}
+
+.social-content{
+  margin-top: 8%;
+}
+
+.stats-text {
+  font-family: 'Azonix Regular', sans-serif;
+  font-size: 28px;
+  margin-top: 0;
+  // margin: 0;
+ 
+  // bottom: 0;
+  // transform-origin: bottom right;
+  // display: flex;
+  // margin-left: 6vw;
+}
+
+.stat-flex-row {
+  display: flex;
+}
+
+.stat-flex-row-item {
+  width: 100%;
+}
+
+.graphs {
+  background-color: #1c1d27;
+  // width: 100%;
+  height: 36vh;
+  margin: 12px;
+}

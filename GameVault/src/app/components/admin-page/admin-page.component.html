@@ -1,0 +1,16 @@
+<app-navigation></app-navigation>
+<div class="main-content">
+    <div class="toggle-div">
+        <button class="games-button toggle-button selected-background" (click)="gamesTabClicked()">GAMES</button>
+        <button class="users-button toggle-button" (click)="usersTabClicked()">USERS</button>
+    </div>
+    <div class="toggled-content">
+        <hr>
+        <div class="gameDiv" *ngIf="isGameShown">
+            <app-game-management></app-game-management>
+        </div>
+        <div class="userDiv" *ngIf="isUserShown">
+            <app-user-management></app-user-management>
+        </div>
+    </div>
+</div>

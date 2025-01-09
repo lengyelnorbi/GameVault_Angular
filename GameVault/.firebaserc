@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "the-gamevault": {
+      "hosting": {
+        "GameVault": [
+          "the-gamevault"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "the-gamevault"
+  }
+}

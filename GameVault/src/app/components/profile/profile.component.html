@@ -1,0 +1,282 @@
+<div class="header-section">
+  <app-navigation></app-navigation>
+  <div class="header-container">
+    <div class="profile-container">
+      <div class="profile-header">
+        <img id="profile-pic" class="pfp" src="">
+        <h1 class="username-text">{{ username }}</h1>
+        <div class="followbuttonsdiv">
+        <p *ngIf="shouldShowFollowButton" style="padding-top: 19.3vh; padding-left: 1.5vh;" id="followbuttonsp">
+          <button mat-button *ngIf="!followedPersonCheck()" (click)="addToFollowed($event)" id="followbutton">Follow</button>
+          <button mat-button *ngIf="followedPersonCheck()" (click)="addToFollowed($event)" (mouseover)="unfollowTextChange('Unfollow')" (mouseout)="unfollowTextChange('Followed')" id="unfollowbutton">{{unfollowText}}</button>
+        </p>
+      </div>
+        <mat-icon [routerLink]="'/options'" class="settings-icon" id="settings">settings</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
+  
+ <div class="content-selector">
+  <button (click)="showOverview()"  [ngClass]="{'selected': selectedButton === 'overview', 'active': selectedButton === 'overview'}">Overview</button>
+  <button (click)="showList()"      [ngClass]="{'selected': selectedButton === 'list',         'active': selectedButton === 'list'}">Game List</button>
+  <button (click)="showSocial()"    [ngClass]="{'selected': selectedButton === 'social',     'active': selectedButton === 'social'}">Social</button>
+</div>
+
+
+<div class="profile-content" *ngIf="isOverviewShown">
+  <div class="overview-container">
+    <div class="about-container">
+      <h1 class="about-text">About Me:</h1>
+      <div class="bio">
+        <p [innerHTML]="bio">{{bio}}</p>
+      </div>
+    </div>
+
+    <div class="favorites-container">
+      <h1 class="favorites-text">Favorites:</h1>
+      <div class="stats">
+        <p class="fav-item">Game(s): </p>
+        <span class="fav-list">{{parseList(favoriteGames)}}</span>
+        <p class="fav-item">Categorie(s): </p> 
+        <span class="fav-list">{{parseList(favoriteCategs)}}</span>
+        <p class="fav-item">Studio(s): </p>
+        <span class="fav-list">{{parseList(favoriteStudios)}}</span>
+      </div>
+    </div>
+
+    <div class="icon-container">
+      <span>{{likedGames.length}}<mat-icon  class="icon"  id="like">thumb_up</mat-icon></span>
+      <span>{{playedGames.length}}<mat-icon class="icon"  id="completed">check_circle</mat-icon></span>
+      <span>{{planList.length}}<mat-icon  class="icon"  id="plan">date_range</mat-icon></span>
+      <span>{{dislikedGames.length}}<mat-icon  class="icon"  id="dislike">thumb_down</mat-icon></span>
+    </div>
+  </div>
+</div>
+
+<div class="profile-content" *ngIf="isOverviewShown">
+  <button (click)="changeChartBool()" id="chartToggleButton" mat-button>Toggle Charts</button>
+  <div *ngIf="chartShowBool"><h2 class="stats-text">Stats:</h2>
+    <h3 class="stat-title">Played categories distribution</h3>
+    <div class="graphs">
+      <ngx-charts-bar-vertical 
+      
+      [results]="makeCategoriesStats()"
+      [scheme]="'fire'"
+      
+      [animations]="false"
+      [xAxis]="true"
+      [yAxis]="true"
+      style="fill: rgb(226, 226, 226);">
+    </ngx-charts-bar-vertical>
+    </div>
+    <div class="stat-flex-row">
+      <div class="stat-flex-row-item">
+        <h3 class="stat-title">Like/dislike distribution</h3>
+        <div class="graphs">
+          <ngx-charts-pie-chart
+          [results]="makeLikeDislikeStats()"
+          [legendTitle]="''"
+          [legend]="true"
+          [explodeSlices]="false"
+          [doughnut]="false"
+          [animations]="false"        
+  
+          [scheme]="'fire'"
+          style="fill: rgb(226, 226, 226);"
+      ></ngx-charts-pie-chart>
+        </div>
+      </div>
+      <div class="stat-flex-row-item">
+        <h3 class="stat-title">Status distribution</h3>
+        <div class="graphs">
+          <ngx-charts-pie-chart
+          [results]="makeStatusStats()"
+          [legendTitle]="''"
+          [legend]="true"
+          [explodeSlices]="false"
+          [doughnut]="false"
+          [animations]="false"
+  
+          [scheme]="'fire'"
+          style="fill: rgb(226, 226, 226);"
+      ></ngx-charts-pie-chart>
+    </div>
+    </div>
+    </div></div>
+</div>
+
+
+<div class="profile-content" *ngIf="isListShown">
+
+  <div class="sidebar">
+    <button (click)="showLikedGames()" [ngClass]="{'selected': selectedButton === 'liked', 'active': selectedButton === 'liked'}">Liked Games</button>
+    <button (click)="showDislikedGames()" [ngClass]="{'selected': selectedButton === 'disliked', 'active': selectedButton === 'disliked'}">Disliked Games</button>
+    <button (click)="showCompletedGames()" [ngClass]="{'selected': selectedButton === 'completed', 'active': selectedButton === 'completed'}">Completed Games</button>
+    <button (click)="showPlanToPlayGames()" [ngClass]="{'selected': selectedButton === 'planned', 'active': selectedButton === 'planned'}">Planned Games</button>
+  </div>
+  <div class="game-list-container">
+
+    <div *ngIf="showLiked">
+      <table class="game-table">
+        <thead>
+          <tr>
+            <th style="color: white">Liked Games:</th>
+            <th>Game Name</th>
+            <th>Studio</th>
+            <th>Release Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let game of likedGames" [routerLink]="['/game', game.id, game.name]">
+            <td><img src={{game.imageUrl}} /></td>
+            <td>{{game.name}}</td>
+            <td>{{game.studio}}</td>
+            <td>{{game.releaseDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    
+    <div *ngIf="showDisliked">
+      <table class="game-table">
+        <thead>
+          <tr>
+            <th style="color: white">Disliked Games:</th>
+            <th>Game Name</th>
+            <th>Studio</th>
+            <th>Release Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let game of dislikedGames" [routerLink]="['/game', game.id, game.name]">
+            <td><img src={{game.imageUrl}} /></td>
+            <td>{{game.name}}</td>
+            <td>{{game.studio}}</td>
+            <td>{{game.releaseDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    
+    <div *ngIf="showCompleted">
+      <table class="game-table">
+        <thead>
+          <tr>
+            <th style="color: white">Completed Games:</th>
+            <th>Game Name</th>
+            <th>Studio</th>
+            <th>Release Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let game of playedGames" [routerLink]="['/game', game.id, game.name]">
+            <td><img src={{game.imageUrl}} /></td>
+            <td>{{game.name}}</td>
+            <td>{{game.studio}}</td>
+            <td>{{game.releaseDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    
+    <div *ngIf="showPlan">
+      <table class="game-table">
+        <thead>
+          <tr>
+            <th style="color: white">Planned Games:</th>
+            <th>Game Name</th>
+            <th>Studio</th>
+            <th>Release Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let game of planList" [routerLink]="['/game', game.id, game.name]">
+            <td><img src={{game.imageUrl}} /></td>
+            <td>{{game.name}}</td>
+            <td>{{game.studio}}</td>
+            <td>{{game.releaseDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>
+
+<div class="profile-content" *ngIf="isSocialShown">
+  <div class="social-content">
+    <div>
+    <h1 class="userHeader">Followed Users:</h1>
+    <!-- <button (click)="toggleFollowedUsernames()">{{ showFollowedUsernames ? 'Hide Followed Users' : 'Get Followed Users' }}</button> -->
+      <ul *ngIf="showFollowedUsernames" style="list-style: none;">
+        <ng-container *ngFor="let user of users">
+          <div *ngIf="followedList.includes(user.id) && user.email !== currUserEmail" class="user-cards" [routerLink]="['/profile', user.id, user.username]" class="users-list">
+            <div class="card">
+              <img [src]="user.pfpUrl" (error)="onImageError($event)" [title]="user.username" />
+              <div class="card-details">
+                <h2>{{user.username}}</h2>
+                <!-- <button class="socialbutton" *ngIf="!followedPersonCheck()" (click)="addToFollowed($event)">+</button> -->
+                <!-- <button class="socialbutton" *ngIf="followedPersonCheck()" (click)="addToFollowed($event)">-</button> -->
+                <br>
+                <div class="socialcounter">
+                  <span>Followers: {{user.followerList.length}}</span><br>
+                  <span>Followed: {{user.followedList.length}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ul>
+    </div>
+    <div>
+    <h1 class="userHeader">Followers:</h1>
+    <!-- <button (click)="toggleFollowerUsernames()">{{ showFollowerUsernames ? 'Hide Follower Users' : 'Get Follower Users' }}</button> -->
+      <ul *ngIf="showFollowerUsernames" style="list-style: none;">
+        <ng-container *ngFor="let user of users">
+          <div *ngIf="followerList.includes(user.id) && user.email !== currUserEmail" class="user-cards" [routerLink]="['/profile', user.id, user.username]" class="users-list">
+            <div class="card">
+              <img [src]="user.pfpUrl" (error)="onImageError($event)" [title]="user.username" />
+              <div class="card-details">
+                <h2>{{user.username}}</h2>
+                <!-- <button class="socialbutton" *ngIf="!followedPersonCheck()" (click)="addToFollowed($event)">+</button> -->
+                <!-- <button class="socialbutton" *ngIf="followedPersonCheck()" (click)="addToFollowed($event)">-</button> -->
+                <br>
+                <div class="socialcounter">
+                  <span>Followers: {{user.followerList.length}}</span><br>
+                  <span>Followed: {{user.followedList.length}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ul>
+    </div>
+    <div>
+      <h1 class="userHeader">All Users:</h1>
+      <!-- <button (click)="toggleUsernames()">{{ showUsernames ? 'Hide Users' : 'Get Users' }}</button> -->
+      <ul *ngIf="showUsernames" style="list-style: none;">
+        <ng-container *ngFor="let user of users">
+          <div class="user-cards" [routerLink]="['/profile', user.id, user.username]" class="users-list" *ngIf="user.email !== currUserEmail">
+            <div class="card">
+              <img [src]="user.pfpUrl" (error)="onImageError($event)" [title]="user.username" />
+              <div class="card-details">
+                <h2>{{user.username}}</h2>
+                <!-- <button class="socialbutton" *ngIf="!followedPersonCheck()" (click)="addToFollowed($event)">+</button> -->
+                <!-- <button class="socialbutton" *ngIf="followedPersonCheck()" (click)="addToFollowed($event)">-</button> -->
+                <br>
+                <div class="socialcounter">
+                  <span>Followers: {{user.followerList.length}}</span><br>
+                  <span>Followed: {{user.followedList.length}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</div> 

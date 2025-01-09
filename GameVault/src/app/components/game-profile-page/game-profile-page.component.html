@@ -1,0 +1,203 @@
+<app-navigation></app-navigation>
+<div class="content-selector">
+    <button (click)="showOverview()"  [ngClass]="{'selected': selectedButton === 'overview', 'active': selectedButton === 'overview'}">Overview</button>
+    <button (click)="showStats()"      [ngClass]="{'selected': selectedButton === 'stats',         'active': selectedButton === 'stats'}">Stats</button>
+</div>
+<div class="main-content">
+
+    <!-- <div *ngIf="isOverviewShown">
+        <h1>OVERWIEV</h1>
+    </div>
+    <div *ngIf="isStatsShown">
+        <h1>STATS</h1>
+    </div> -->
+
+    <div class="title-div">
+        <div class="image-container">
+            <img class="cover-image" src="{{ gameData.imageUrl }}"/>
+            <div class="action-div">
+
+                <div class="like-dislike-div">
+                    <span class="like-dislike">{{ gameData.likeCount }} <button class="like-btn" (click)="likeGame()"><mat-icon>thumb_up</mat-icon></button></span>
+                    <span class="percent-span">{{ percent }}%</span>
+                    <span class="like-dislike"><button class="dislike-btn" (click)="dislikeGame()"><mat-icon>thumb_down</mat-icon></button> {{ gameData.dislikeCount }}</span>
+                </div>
+                
+                <div class="add-to-div">
+                    <button *ngIf="!checkIfCompletedGame(gameData)" (click)="addNewGameToCompletedList()">ADD TO COMPLETED</button>
+                    <button class="yellow" *ngIf="checkIfCompletedGame(gameData)" (click)="addNewGameToCompletedList()">REMOVE FROM COMPLETED</button>
+                </div>
+            
+            </div>
+        </div>
+        <div class="name-desc-div">
+            <div class="title-tag-div">
+                <h1>{{ gameData.name }}</h1>
+
+                <div class="genres-holder">
+                    <div *ngFor="let cat of gameData.category" class="genre-tag">{{cat}}</div>
+                </div>
+            </div>
+            <p class="year-studio">{{ gameData.releaseDate }} ‎ ‎• ‎ ‎ {{ gameData.studio }}</p>
+            <p *ngIf="isOverviewShown">{{ gameData.description }}</p>
+            <!-- <h2>Genres:</h2>
+            <div class="genres-holder">
+                <div *ngFor="let cat of gameData.category" class="genre-tag">{{cat}}</div>
+            </div>
+            <p>{{ parseList(gameData.category) }}</p> -->
+            <h2 *ngIf="isOverviewShown">Available on:</h2>
+            <p *ngIf="isOverviewShown">{{ parseList(gameData.platforms) }}</p>
+            <h2 *ngIf="isOverviewShown">Trailer:</h2>
+            <div *ngIf="isOverviewShown" class="iframe-container">
+                <iframe [src]='sanitizeHtml(gameData.trailer)' title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+
+            <div *ngIf="isStatsShown" class="stat-flex-row">
+                <div class="stat-flex-row-item">
+                  <h3 class="stat-title">Completed/planned distribution</h3>
+                  <div class="graphs">
+                        <!-- <ngx-charts-pie-chart
+                        [results]="makeLikeDislikeStats()"
+                        [legendTitle]="''"
+                        [legend]="true"
+                        [explodeSlices]="false"
+                        [doughnut]="false"
+                        [animations]="false"        
+                
+                        [scheme]="'fire'"
+                        style="fill: rgb(226, 226, 226);"
+                        ></ngx-charts-pie-chart> -->
+                        <ngx-charts-pie-chart
+                        [results]="makeChartForGame()"
+                        [legendTitle]="''"
+                        [legend]="true"
+                        [explodeSlices]="false"
+                        [doughnut]="false"
+                        [animations]="false"        
+                
+                        [scheme]="'fire'"
+                    ></ngx-charts-pie-chart>
+                  </div>
+                </div>
+                <div class="stat-flex-row-item">
+                  <h3 class="stat-title">Liked/disliked distribution</h3>
+                  <div class="graphs">
+                    <!-- <ngx-charts-pie-chart
+                    [results]="makeStatusStats()"
+                    [legendTitle]="''"
+                    [legend]="true"
+                    [explodeSlices]="false"
+                    [doughnut]="false"
+                    [animations]="false"
+            
+                    [scheme]="'fire'"
+                    style="fill: rgb(226, 226, 226);"
+                ></ngx-charts-pie-chart> -->
+                    <ngx-charts-pie-chart
+                    [results]="makeChartForGame2()"
+                    [legendTitle]="''"
+                    [legend]="true"
+                    [explodeSlices]="false"
+                    [doughnut]="false"
+                    [animations]="false"
+            
+                    [scheme]="'fire'"
+                    style="fill: rgb(0, 0, 0);"
+                ></ngx-charts-pie-chart>
+              </div>
+            <!-- <div *ngIf="isStatsShown" style="margin-top: 10vh;">
+                <div style="float: left; width: 50%;">
+                    <ngx-charts-pie-chart
+                        [results]="makeChartForGame()"
+                        [view]="[680, 300]"
+                        [legend]="true"
+                        [explodeSlices]="false"
+                        [doughnut]="false"
+                        [animations]="false"
+                        [legendTitle]="'Completed/Planned'"
+                        [legendPosition]="below"
+                        [scheme]="'fire'"
+                    ></ngx-charts-pie-chart>
+                </div>
+                <div style="float: right; width: 50%;">
+                    <ngx-charts-pie-chart
+                    [results]="makeChartForGame2()"
+                    [view]="[680, 300]"
+                    [legend]="true"
+                    [explodeSlices]="false"
+                    [doughnut]="false"
+                    [animations]="false"
+                    [legendTitle]="'Likes/Dislikes'"
+                    [legendPosition]="below"
+                    [scheme]="'fire'"
+                ></ngx-charts-pie-chart>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="comments-div">
+    <div class="comments-filter">
+        <h2>Comments ({{getCommentsLength()}})<!-- (2)--></h2>
+        <!-- <mat-form-field appearance="fill" class="selector-container">
+          <mat-label>Sort</mat-label>
+          <mat-select #selectPlatforms [(ngModel)]="selectedSort" (ngModelChange)="onSortSelected($event)">
+            <mat-option *ngFor="let sort of sortingList" [value]="sort">
+              {{ sort }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+        <mat-form-field appearance="fill" class="number-container">
+          <mat-label>Order</mat-label>
+          <mat-select #selectPlatforms [(ngModel)]="selectedOrder" (ngModelChange)="onOrderSelected($event)">
+            <mat-option value="default" selected>Default</mat-option>
+            <mat-option value="ascending">Ascending</mat-option>
+            <mat-option value="descending">Descending</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    <div class="new-comment">
+        <img class="comment-pfp" src={{currentUserPfp}}>
+        <form [formGroup]="newCommentForm" (ngSubmit)="postNewComment()" class="new-comment-form">
+            <!-- <input type="radio" id="didRecommendID" name="fav_language" value="didRecommend">
+            <label for="didRecommendID">Recommend</label><br>
+            <input type="radio" id="didNotRecommendID" name="fav_language" value="didNotRecommend">
+            <label for="didNotRecommendID">Not recommend</label> -->
+            <mat-form-field style="margin-bottom: -1.25em; width: 100%;">
+                <textarea
+                    rows="4"
+                    matNativeControl
+                    placeholder="Add a comment..."
+                    formControlName="content"
+                ></textarea>
+            </mat-form-field>
+          <button id="add-new-comment-btn" type="submit">🡒</button>
+        </form>
+    </div>
+    <!-- <div class="comment">
+        <img class="comment-pfp" src="https://cdn.discordapp.com/attachments/884468391014969424/1092011707737591931/image.png">
+        <div>
+            <h3>Cengiz<span class="comment-time"> ‎ • ‎ 2023-04-17</span></h3>
+            <p>Broooooooooo help, ez nagyon nehéz game.</p>
+        </div>
+    </div>
+    <div class="comment">
+        <img class="comment-pfp" src="https://cdn.discordapp.com/attachments/884468391014969424/1092011707737591931/image.png">
+        <div>
+            <h3>Prose152<span class="comment-time"> ‎ • ‎ 2023-05-01</span></h3>
+            <p>OOOHHHHHH MMYYYYYY GOOOOOOODDDDD, a WOW jobb.</p>
+        </div>
+    </div> -->
+    <ng-template #placeholderImage>
+        <img class="comment-pfp" src="{{currentUserPfp}}">
+      </ng-template>
+      
+      <div class="comment" *ngFor="let comment of comments ">
+        <img *ngIf="comment.pfpUrl; else placeholderImage" class="comment-pfp" src="{{comment.pfpUrl}}">
+        <div>
+          <h3>{{comment.userName}}<span class="comment-time"> ‎ • ‎ {{comment.date}}</span></h3>
+          <p>{{comment.content}}</p>
+        </div>
+      </div>
+</div>

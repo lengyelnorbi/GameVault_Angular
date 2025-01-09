@@ -1,0 +1,35 @@
+<div id="importmain">
+
+    <label for="importfiles" class="drop-container"  (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+        <span class="drop-title"><b style="color: rgb(0, 0, 0);">Select a file</b> or Drag & Drop</span>
+        <input type="file" id="importfiles"  required (change)="onFileSelected($event)">
+      </label>
+      
+<div id="saveimport">
+      <div  id="table-div">
+        <table>
+          <thead>
+            <th>Studio</th>
+            <th>Name</th>
+            <th>Image URL</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Genre</th>
+            <th>Platform</th>
+          </thead>
+          <tbody *ngFor="let i of lista">
+            <tr>
+              <td>{{i['studio']}}</td>
+              <td>{{i['name']}}</td>
+            <td>{{i['imageUrl']}}</td>
+              <td>{{i['description']}}</td>
+              <td>{{i['releaseDate']}}</td>
+              <td>{{i['category']}}</td>
+            <td>{{i['platforms']}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        <button (click)="onUpload()">Save</button>
+    </div>
+</div>

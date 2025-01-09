@@ -1,0 +1,51 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav-content>
+
+    <mat-toolbar color="primary">
+      <div class="nav-section-1">
+        <span class="title" id="t1" (click)="animate()" routerLink="/home">Game</span><span class="title" id="t2"  (click)="animate()" routerLink="/home">Vault</span>
+      </div>
+
+      <div class="nav-section-2">
+        <nav role='navigation' class="nav-tabs">
+          <a [routerLink]="'/games'">Games</a>
+          <a [routerLink]="'/featured'">Popular</a>
+          <a [routerLink]="'/profile'">Profile</a>
+        </nav>
+      </div>
+
+      <div class="nav-section-3">
+        <button class="login_button" mat-button [matMenuTriggerFor]="userMenu" *ngIf="authService.currentUser$ | async as user; else loginButton">
+          <div class="user-info">
+            <mat-icon class="icon">account_circle</mat-icon>
+            <span class="display-name">{{ username }}</span>
+            <mat-icon class="icon">expand_more</mat-icon>
+          </div>
+        </button>
+          <ng-template #loginButton >
+            <button class="login-nav" mat-button [routerLink]="'/auth'">
+              <mat-icon class="login-icon">login</mat-icon>
+              Sign-in
+            </button>
+          </ng-template>
+          <mat-menu #userMenu="matMenu" class="leugro-menu">
+            <span *ngIf="authService.currentUser$ | async as user">
+              <button *ngIf="user.email == 'admin@gmail.com'" class="menu-pont" mat-menu-item  [routerLink]="'/admin'">Admin Menu</button>
+              <button class="menu-pont" mat-menu-item [routerLink]="'/profile'" >Profile</button>
+              <button class="menu-pont" mat-menu-item [routerLink]="'/options'" >Options</button>
+              <!-- <button class="menu-pont" mat-menu-item [routerLink]="'/leaderboard'" >Leaderboard</button>-->
+              <button class="menu-pont" mat-menu-item (click)="logout()" (click)="animate()">Logout</button>
+              
+           </span>
+          </mat-menu>
+      </div>
+
+
+
+
+
+
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

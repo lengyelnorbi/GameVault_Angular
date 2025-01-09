@@ -1,0 +1,34 @@
+<!--<h2>Magange users!</h2>-->
+<div class="managetitle">
+  <span class="managetext">Manage </span>
+  <span class="gold-text-v2">users</span>
+</div>
+<div id="table-div">
+    <table>
+        <thead>
+            <th>E-mail</th>
+            <th>Username</th>
+            <th>Manage</th>
+        </thead>
+        <tbody>
+            <tr class="rowU animate-row" *ngFor="let i of lista">
+                <td>{{i.email}}</td>
+                <td>{{i.username}}</td>
+                <td class="action-td">
+                    <button *ngIf="!i.isBanned"  class="pulse" style="color: red" (click)="onBan(i)">
+                        <mat-icon class="icon">gavel</mat-icon>
+                        <span class="button-text">Ban</span>
+                    </button>
+                    <button *ngIf="i.isBanned"  class="pulse" style="color: green" (click)="onUnban(i)">
+                        <mat-icon class="icon">person_add</mat-icon>
+                        <span class="button-text">Unban</span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+

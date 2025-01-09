@@ -1,0 +1,159 @@
+
+<div class="slot box">
+  <div class="land-container">
+    <div class="land-content-container">
+        <div class="title-container">
+          <div class="title ">
+            <span class="game-text ">Game</span><span class="gold-text">Vault</span> 
+              <div class=" subtitle">
+                THE ULTIMATE GAMING RESOURCE
+              </div>
+          </div>
+        </div>
+        <div class="desc-container ">
+          <div class="desc costum-border-left shadow">
+            <div class="stats-container">
+              <div class="stats">
+                <span>Current Games:</span><span class="stat-number"> <count-up [countUp]="gamesCount" duration="1">  0</count-up></span>
+              </div>
+              <div class="stats">
+                <span>Current Users:</span><span class="stat-number"> <count-up [countUp]="userCount" duration="1">  0</count-up></span>
+              </div>
+            </div>
+            <div class="stats-container">
+              <div class="stats">
+                <span>Current Reviews:</span><span class="stat-number"> <count-up [countUp]="1230" duration="1">  0</count-up></span>
+              </div>
+              <div class="stats">
+                <span>Current Banned Users:</span><span class="stat-number"> <count-up [countUp]="1512" duration="1">  0</count-up></span>
+              </div>
+            </div>
+            
+            
+          </div>
+        </div>
+        <div class="join-container">
+          <a href="#login"class= "join shadow-gradient costum-border-anim-right button-style" >
+            <h2>Join Us</h2>
+          </a>
+        </div>
+    </div>
+    <div class="block-container">
+      <div class="block shadow-gradient">
+        <app-cube></app-cube>
+      </div>
+      
+    </div>
+  </div>
+  <div class="down-button-container">
+    <a class="down-button floating" href="#games"><mat-icon class="icon">keyboard_arrow_down</mat-icon></a>
+  </div>
+</div>
+<div class="slot "  id="games">
+  <div class="game-button-container ">
+    <div class="game-button button-style costum-border-anim-left" [routerLink]="'/games'" (click)="animate()">
+      <h2>Games</h2>
+  </div>
+  </div>
+  <div class="game-slider-container ">
+    <div class="game-slider">
+      <div class="card-content subtitle shadow costum-border-right">
+        <div class="slideShow-container" *ngFor="let game of gameList.slice(0, 7); index as i" >
+            <div class="slide-item">
+              <img src="{{game.imageUrl}}" [routerLink]="['/game', game.id, game.name]" (click)="animate()">            
+            </div>
+          </div>
+        </div>
+      <a class="prev" (click)="prepEnd()">&#10094;</a>
+      <a class="next" (click)="appEnd()">&#10095;</a>
+    </div>
+  </div>
+  <div class="down-button-container">
+    <a class="down-button floating" href="#login"><mat-icon class="icon">keyboard_arrow_down</mat-icon></a>
+  </div>
+</div>
+<div class="slot" id="login">
+  <div class="auth-page">
+    <div class="aut-title">
+      <span id = "login-text-1" class="game-text-form">SIGN</span>
+      <span id = "login-text-2" class="gold-text-form">IN</span>
+    </div>
+    
+    
+    <div class="form-container">
+        <div class="login-div">
+            <div class="login-content">
+    
+                <h2>SIGN IN</h2>
+                <app-login></app-login>
+    
+            </div>
+        </div>
+        <div class="register-div">
+            <div class="register-content">
+    
+                <h2>SIGN UP</h2>
+                <app-registration></app-registration>
+    
+            </div>
+            </div>
+        <div class="move-me highlight-rest">
+            <h2 id="text-to-change">Are you new here?</h2>
+            <button class="move-button" (click)="moveDiv()">SIGN UP ►</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--
+
+  Title
+
+<div class="title">
+          <span class="game">Game</span><span class="gold-text">Vault</span> 
+        </div>
+        <div class="subtitle">
+          THE ULTIMATE GAMING RESOURCE
+        </div>
+        <div class="about">
+          asdasdasdasd
+        </div>
+
+
+Join us
+
+<div class= "join-card card-h2 yo" [routerLink]="'/auth'">
+          <h2>Join Us</h2>
+        </div>
+
+
+Game slider
+
+<div class="games-card" >
+    <div class="card-content subtitle">
+        <div class="slideShow-container" *ngFor="let game of gameList.slice(0, 7); index as i" >
+            <div class="slide-item">
+              <img src="{{game.imageUrl}}" [routerLink]="['/game', game.id, game.name]">            
+            </div>
+          </div>
+        </div>
+      <a class="prev" (click)="prepEnd()">&#10094;</a>
+      <a class="next" (click)="appEnd()">&#10095;</a>
+    </div>
+
+  
+
+    Games Button
+
+
+    <mat-card class="game-open-card" [routerLink]="'/games'" (click)="animate()">
+    <div class="card-h2 yo">
+      
+        <h2>Games</h2>
+      
+      
+    </div>
+  </mat-card>
+-->
+
+

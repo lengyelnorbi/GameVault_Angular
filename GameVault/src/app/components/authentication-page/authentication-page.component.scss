@@ -1,0 +1,250 @@
+.gold-text {
+  --bg-size: 400%;
+  --color-one: rgb(255,214,92);
+  --color-two: hsl(40 95% 55%);
+  font-size: clamp(3rem, 25vmin, 8rem);
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  color: transparent;
+  background-clip: text;
+
+
+  font-family: 'Azonix Regular', sans-serif;
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .gold-text {
+    animation: move-bg 8s linear infinite;
+  }
+  @keyframes move-bg {
+    to {
+      background-position: var(--bg-size) 0;
+    }
+  }
+}
+
+h1 {
+  text-align: center;
+  font-size: clamp(3rem, 25vmin, 8rem);
+  font-family: 'Azonix Regular', sans-serif;
+  color: white;
+}
+
+.form-container {
+  color: rgb(0, 0, 0);
+  display: block;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 3px;
+  background: rgb(227, 226, 222);
+  padding: 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  position: relative;
+
+  border-radius: 5px;
+}
+
+.register-div, .login-div {
+  font-family: 'Azonix Regular', sans-serif;
+  width: 100%;
+  padding: 48px;
+}
+
+.move-me {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 99999;
+
+  box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.4);
+  
+  position: absolute;
+  height: 100%;
+  width: 50%;
+
+  font-family: 'Azonix Regular', sans-serif;
+  font-size: 85%;
+  border-radius: 5px;
+}
+
+.move-button {
+  box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.1);
+
+  background: white;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  
+  width: 50%;
+  font-family: 'Azonix Regular', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 16px;
+  text-transform: uppercase;
+  display: inline-block;
+  
+  text-decoration: none;
+
+}
+
+
+.highlight-rest {
+  --bg-size: 400%;
+  --color-one: rgb(255,214,92);
+  --color-two: hsl(40 95% 55%);
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  right: 0;
+}
+
+.highlight-left {
+  --bg-size: 400%;
+  --color-one: rgb(255,214,92);
+  --color-two: hsl(40 95% 55%);
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  left: 0;
+  
+  animation-name: goLeftAnim;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-out;
+}
+
+.highlight-left * {
+  position: relative;
+  animation-name: textRightAnim;
+  animation-duration: 0.78s;
+  animation-timing-function: ease-out;
+}
+
+.highlight-right {
+  --bg-size: 400%;
+  --color-one: rgb(255,214,92);
+  --color-two: hsl(40 95% 55%);
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  right: 0;
+  
+  animation-name: goRightAnim;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-out;
+}
+
+.highlight-right * {
+  position: relative;
+  animation-name: textLeftAnim;
+  animation-duration: 0.78s;
+  animation-timing-function: ease-out;
+}
+
+.form-left {
+  position: relative;
+  animation-name: goLeftAnim2;
+  animation-duration: 0.78s;
+  animation-timing-function: ease-out;
+}
+
+.form-right {
+  position: relative;
+  animation-name: goRightAnim2;
+  animation-duration: 0.78s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes goRightAnim {
+  0% {
+    right: calc(50%);
+  }
+  100% {
+    right: 0;
+  }
+}
+
+@keyframes goRightAnim2 {
+  0% {
+    right: calc(10%);
+  }
+  100% {
+    right: 0;
+  }
+}
+
+
+@keyframes goLeftAnim {
+  0% {
+    left: calc(50%);
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes goLeftAnim2 {
+  0% {
+    left: calc(10%);
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes textLeftAnim {
+  0% {
+    left: calc(125%);
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes textRightAnim {
+  0% {
+    right: calc(125%);
+  }
+  100% {
+    right: 0;
+  }
+}
+
+.login-content, .register-content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.auth-page {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

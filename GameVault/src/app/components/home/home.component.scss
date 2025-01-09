@@ -1,0 +1,798 @@
+
+.slot{
+  margin-top: 5vh;
+  height: 90vh;
+  
+  
+}
+$primary-color: #22222257; // Change this to the desired color for the shadow
+$transparent-color: rgba($primary-color, 0); // This will make the color transparent
+
+.shadow-gradient {
+  background-image: radial-gradient(closest-side, $primary-color, $primary-color 50%, $transparent-color 100%);
+}
+
+
+.icon{
+  transform: scale(2);
+}
+
+.box:before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(-45deg, #41424f7c -20%, #00000069 161% );
+  transform: translate3d(0px, 100px, 0) scale(0.95);
+  filter: blur(100px);
+  opacity: var(0.58);
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
+
+/* 
+* Prevents issues when the parent creates a 
+* stacking context. (For example, using the transform
+* property )
+*/
+.box::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
+}
+      
+      
+      
+
+.costum-border-left {
+  --b: 6px;  /* border thickness*/
+  --s: 60px; /* size of the corner*/
+  --g: 14px; /* the gap*/
+  --c: #EDC951; 
+  --c2: white;
+  
+  padding: calc(var(--b) + var(--g));
+  background-image:
+    conic-gradient(from  90deg at top    var(--b) left  var(--b),#0000 25%,var(--c) 0),
+    conic-gradient(from -90deg at bottom var(--b) right var(--b),#0000 25%,var(--c2) 0);
+  background-position:
+    var(--_p,0%) var(--_p,0%),
+    calc(100% - var(--_p,0%)) calc(100% - var(--_p,0%));
+  background-size: var(--s) var(--s);
+  background-repeat: no-repeat;
+  transition: 
+    background-position .3s var(--_i,.3s), 
+    background-size .3s calc(.3s - var(--_i,.3s));
+}
+
+.costum-border-right {
+  --b: 6px;  /* border thickness*/
+  --s: 60px; /* size of the corner*/
+  --g: 14px; /* the gap*/
+  --c: #EDC951; 
+  --c2: white;
+
+  padding: calc(var(--b) + var(--g));
+  background-image:
+    conic-gradient(from 180deg at top    var(--b) right var(--b),#0000 25%,var(--c) 0),
+    conic-gradient(from   0deg at bottom var(--b) left  var(--b),#0000 25%,var(--c2) 0);
+  background-position:
+    calc(100% - var(--_p,0%)) var(--_p,0%),
+    var(--_p,0%) calc(100% - var(--_p,0%));
+  background-size: var(--s) var(--s);
+  background-repeat: no-repeat;
+  transition: 
+    background-position .3s var(--_i,.3s), 
+    background-size .3s calc(.3s - var(--_i,.3s));
+}
+.costum-border-anim-right {
+  --b: 6px;  /* border thickness*/
+  --s: 60px; /* size of the corner*/
+  --g: 14px; /* the gap*/
+  --c: #EDC951; 
+  --c2: white;
+
+  padding: calc(var(--b) + var(--g));
+  background-image:
+    conic-gradient(from 180deg at top    var(--b) right var(--b),#0000 25%,var(--c) 0),
+    conic-gradient(from   0deg at bottom var(--b) left  var(--b),#0000 25%,var(--c2) 0);
+  background-position:
+    calc(100% - var(--_p,0%)) var(--_p,0%),
+    var(--_p,0%) calc(100% - var(--_p,0%));
+  background-size: var(--s) var(--s);
+  background-repeat: no-repeat;
+  transition: 
+    background-position .3s var(--_i,.3s), 
+    background-size .3s calc(.3s - var(--_i,.3s));
+}
+
+.costum-border-anim-right:hover {
+  background-size: calc(100% - var(--g)) calc(100% - var(--g));
+  --_p: calc(var(--g)/2);
+  --_i: 0s;
+}
+
+.costum-border-anim-left {
+  --b: 6px;  /* border thickness*/
+  --s: 60px; /* size of the corner*/
+  --g: 14px; /* the gap*/
+  --c: #EDC951; 
+  --c2: white;
+  
+  padding: calc(var(--b) + var(--g));
+  background-image:
+    conic-gradient(from  90deg at top    var(--b) left  var(--b),#0000 25%,var(--c) 0),
+    conic-gradient(from -90deg at bottom var(--b) right var(--b),#0000 25%,var(--c2) 0);
+  background-position:
+    var(--_p,0%) var(--_p,0%),
+    calc(100% - var(--_p,0%)) calc(100% - var(--_p,0%));
+  background-size: var(--s) var(--s);
+  background-repeat: no-repeat;
+  transition: 
+    background-position .3s var(--_i,.3s), 
+    background-size .3s calc(.3s - var(--_i,.3s));
+}
+
+.costum-border-anim-left:hover {
+  background-size: calc(100% - var(--g)) calc(100% - var(--g));
+  --_p: calc(var(--g)/2);
+  --_i: 0s;
+}
+
+
+
+
+.land-container{
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+
+  .land-content-container{
+    width: 60%;
+    height: 100%;
+    //background-color: rgb(255, 0, 0);
+
+    .title-container{
+      width: 100%;
+      height: 30%;
+      //background-color: rgb(166, 255, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .title{
+        width: 100%;
+        height: 100%;
+        //background-color: red;
+      }
+    }
+    .desc-container{
+      width: 100%;
+      height: 40%;
+      //background-color: rgb(0, 204, 255);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .desc{
+       // background-color: red;
+        width: 80%;
+        height: 80%;
+        margin-top: 15%;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        .stats-container{
+          width: 40%;
+          height: 100%;
+          .stats{
+            width:100%;
+            height: auto;
+            font-family: sans-serif;
+            font-weight: 800;
+            padding-top: 13%;
+            text-transform: uppercase;
+            font-size:120%;
+            color: white;
+            
+            .stat-number{
+              color:#EDC951;
+              margin-left: 3%;
+              font-size: 120%;
+            }
+            //text-align: center;
+  
+          }
+        }
+        
+      }
+    }
+    .join-container{
+      width: 100%;
+      height: 30%;
+      //background-color: rgb(0, 89, 255);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .join{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        margin-top: 8%;
+        width: 20%;
+        height: 25%;
+        //background-color: red;
+      }
+    }
+
+  }
+  .block-container{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    //background-color: rgb(255, 255, 255);
+    .block{
+      margin-top: 20%;
+      //background-color: red;
+    }
+  }
+}
+.down-button-container{
+  height: 15%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .floating { 
+    animation-name: floating;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+ 
+@keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 7px); }
+    100%   { transform: translate(0, -0px); }   
+}
+  .down-button{
+    width: 4%;
+    height: 60%;
+    border-radius: 100%;
+    margin-top: 5%;
+    //background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size:200%;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(255,214,92);
+    
+    background-color: rgba(64, 60, 60, 0.5);
+    border: 4px solid rgb(255, 255, 255);
+  
+
+    transition: all 0.3s ease-in-out;
+  &:hover{
+    background-color: rgba(94, 89, 89, 0.52);
+    color: rgb(255, 255, 255);
+    border-color: rgb(255,214,92);
+  }
+  }
+}
+.game-button-container{
+  width: 100%;
+  height: 15%;
+  //background-color: rgb(255, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  .game-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    width: 15%;
+    height: 70%;
+    margin-left: 1.5%;
+    //background-color: red;
+  }
+}
+.game-slider-container{
+  margin-top: 2%;
+  width: 100%;
+  height: 60%;
+  //background-color: rgb(157, 255, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .card-content{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    //background-color: red;
+  }
+}
+
+
+.button-style{
+  font-family: 'Azonix Regular', sans-serif;
+  color: white;
+  font-size: 25px;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+
+
+  /*background-color: rgba(64, 60, 60, 0.5);
+  border: 4px solid rgb(255,214,92);
+  
+
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    background-color: rgba(94, 89, 89, 0.52);
+    transform: scale(1.15);
+    color: rgb(255,214,92);
+  }
+  */
+}
+
+
+
+
+
+.shadow{
+  background-color: rgba(0,0,0,0.1);
+  box-shadow: none;
+  //border-radius: 10px;
+}
+
+
+
+$textmeret:1;
+.gold-text {
+  --bg-size: 400%;
+  --color-one: rgb(255,214,92);
+  --color-two: hsl(40 95% 55%);
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  color: transparent;
+  background-clip: text;
+
+
+  font-family: 'Azonix Regular', sans-serif;
+  text-align: center;
+  display: inline-block;
+  margin: 0;
+  font-size: 70%*$textmeret;
+
+  margin-top: 3.6%;
+  
+  border-top: 1.5vh solid white;
+}
+.game-text {
+  font-family: 'Azonix Regular', sans-serif;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  margin: 0;
+  font-size: 70%*$textmeret;
+
+  border-bottom: 1.5vh solid rgb(255,214,92);
+  
+}
+.gold-text-form{
+  --bg-size: 400%;
+  --color-one: rgb(255,214,92);
+  --color-two: hsl(40 95% 55%);
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  color: transparent;
+  background-clip: text;
+
+
+  font-family: 'Azonix Regular', sans-serif;
+  text-align: center;
+  display: inline-block;
+  margin: 0;
+  font-size: 150px;
+
+  margin-top: 3.6%;
+}
+.game-text-form{
+  font-family: 'Azonix Regular', sans-serif;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  margin: 0;
+  font-size: 150px;
+}
+
+.description-text{
+  font-family: sans-serif;
+  color: white;
+  display: inline-block;
+  margin: 0;
+  font-size: 30px;
+}
+
+/*.dashboard-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  transition: all 0.1s ease-in-out;
+  background-color: rgba(64, 60, 60, 0.5);
+
+  border: 1px solid rgb(255,214,92);
+
+  &:hover{
+    background-color: rgba(94, 89, 89, 0.52);
+    transform: scale(1.015);
+  }
+}
+*/
+.game-slider{
+  text-align: center;
+  height: 50vh;
+  width: 90%;
+}
+
+
+
+
+.game-open-card{
+  width: 30vh;
+  height: 20vh;
+  margin-top: 5vh;
+  
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+
+.subtitle{
+  font-family: sans-serif;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  font-size: 12%;
+  color: white;
+  
+  text-align: center;
+
+  /*display: inline;*/
+  width: 100%;
+}
+
+.slideShow-container {
+  width: 100px;
+  display: flex;
+  flex-flow: wrap;
+  padding: 7px;
+  height: 100%;
+  border-radius: var(--mdc-elevated-card-container-shape, var(--mdc-shape-medium, 4px));;
+
+  background-color: transparent;
+  box-shadow: none;
+
+}
+
+.slide-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.slide-item img {
+  height: 15%;
+  width: 11.5%;
+  position: absolute;
+  border: 2px solid rgb(255, 214, 92);
+  cursor: pointer;
+  margin-top: 5vh;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0; // Set the initial opacity to 0 (hidden)
+  animation: fadeIn 0.5s ease-in-out forwards; // Add the fadeIn animation
+}
+
+
+
+.slider-img{
+  width: 100%;
+  height: 100%;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: 1%;
+  padding: 5px;
+  color: rgb(255,214,92);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 6%;
+}
+
+.prev {
+  left: 8%;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+
+
+
+// auth
+
+.auth-page {
+  position: relative;
+  
+}
+.aut-title{
+  margin-left: 30%;
+
+}
+
+.form-container {
+  color: rgb(0, 0, 0);
+  display: block;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 3px;
+  background: rgb(227, 226, 222);
+  padding: 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  position: relative;
+
+  border-radius: 5px;
+}
+
+.register-div, .login-div {
+  font-family: 'Azonix Regular', sans-serif;
+  width: 100%;
+  padding: 48px;
+}
+
+.move-me {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 99999;
+
+  box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.4);
+  
+  position: absolute;
+  height: 100%;
+  width: 50%;
+
+  font-family: 'Azonix Regular', sans-serif;
+  font-size: 85%;
+  border-radius: 5px;
+}
+
+.move-button {
+  box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.1);
+
+  background: white;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  
+  width: 50%;
+  font-family: 'Azonix Regular', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 16px;
+  text-transform: uppercase;
+  display: inline-block;
+  
+  text-decoration: none;
+
+}
+
+
+.highlight-rest {
+  --bg-size: 400%;
+  --color-one: rgb(255,214,92);
+  --color-two: hsl(40 95% 55%);
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  right: 0;
+}
+
+.highlight-left {
+  --bg-size: 400%;
+  --color-one: rgb(255,214,92);
+  --color-two: hsl(40 95% 55%);
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  left: 0;
+  
+  animation-name: goLeftAnim;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-out;
+}
+
+.highlight-left * {
+  position: relative;
+  animation-name: textRightAnim;
+  animation-duration: 0.78s;
+  animation-timing-function: ease-out;
+}
+
+.highlight-right {
+  --bg-size: 400%;
+  --color-one: rgb(255,214,92);
+  --color-two: hsl(40 95% 55%);
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  right: 0;
+  
+  animation-name: goRightAnim;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-out;
+}
+
+.highlight-right * {
+  position: relative;
+  animation-name: textLeftAnim;
+  animation-duration: 0.78s;
+  animation-timing-function: ease-out;
+}
+
+.form-left {
+  position: relative;
+  animation-name: goLeftAnim2;
+  animation-duration: 0.78s;
+  animation-timing-function: ease-out;
+}
+
+.form-right {
+  position: relative;
+  animation-name: goRightAnim2;
+  animation-duration: 0.78s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes goRightAnim {
+  0% {
+    right: calc(50%);
+  }
+  100% {
+    right: 0;
+  }
+}
+
+@keyframes goRightAnim2 {
+  0% {
+    right: calc(10%);
+  }
+  100% {
+    right: 0;
+  }
+}
+
+
+@keyframes goLeftAnim {
+  0% {
+    left: calc(50%);
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes goLeftAnim2 {
+  0% {
+    left: calc(10%);
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes textLeftAnim {
+  0% {
+    left: calc(125%);
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes textRightAnim {
+  0% {
+    right: calc(125%);
+  }
+  100% {
+    right: 0;
+  }
+}
+
+.login-content, .register-content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+}

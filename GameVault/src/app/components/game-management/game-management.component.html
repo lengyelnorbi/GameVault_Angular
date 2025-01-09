@@ -1,0 +1,152 @@
+<!-- <app-navigation></app-navigation> -->
+<!--<h2 (click)="showAddPopUp()" class="gold-text">Manage games!</h2>-->
+<div (click)="showAddPopUp()" class="plus-button">+</div>
+<div class="managetitle">
+<span (click)="showAddPopUp()" class="managetext">Manage </span>
+<span (click)="showAddPopUp()" class="gold-text-v2">games</span>
+</div>
+<div>
+  <div (click)="reset()" ng-click="reset()" class="pop-up-holder hidden-pop">
+    <div (click)="$event.stopPropagation()" class="pop-up">
+        <h2 class="add-pop-title">Add a new game!</h2>
+        <form [formGroup]="newGameForm" (ngSubmit)="submit()" class="xd">
+          
+          <div class="form-field-container">
+          <p>Name:</p>
+          <mat-form-field>
+            <input matInput placeholder="Name" formControlName="name" />
+            <mat-error *ngIf="name?.errors?.['required']"
+              >Game name is required</mat-error
+            >
+          </mat-form-field>
+          </div>
+
+          <div class="form-field-container">
+          <p>Studio:</p>
+          <mat-form-field>
+            <input matInput placeholder="Studio" formControlName="studio" />
+            <mat-error *ngIf="studio?.errors?.['required']"
+              >Studio name is required</mat-error
+            >
+          </mat-form-field>
+          </div>
+
+          <div class="form-field-container">
+            <p>Trailer:</p>
+            <mat-form-field>
+              <input matInput placeholder="Trailer url ID" formControlName="trailer" />
+              <mat-error *ngIf="studio?.errors?.['required']"
+                >Trailer is required</mat-error
+              >
+            </mat-form-field>
+            </div>
+
+          <div class="form-field-container">
+          <p>Description:</p>
+          <mat-form-field>
+            <textarea
+              rows="4"
+              matNativeControl
+              placeholder="Description"
+              formControlName="description"
+            ></textarea>
+          </mat-form-field>
+        </div>
+
+          <div class="form-field-container">
+          <p>Cover image:</p>
+          <mat-form-field>
+            <input matInput placeholder="Image URL" formControlName="imageUrl" />
+            <mat-error *ngIf="imageUrl?.errors?.['required']"
+              >Image URL is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+          <div class="form-field-container">
+          <p>Release date:</p>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="releasedate" />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="releasedate?.errors?.['required']"
+              >Picking date is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+          <div class="form-field-container">
+          <p>Genres:</p>
+          <mat-form-field appearance="fill">
+            <mat-label>Add Genre</mat-label>
+            <mat-select #selectGenres [formControl]="genres" multiple>
+              <mat-option *ngFor="let genre of genresList" [value]="genre">
+                {{ genre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+          <div class="form-field-container">
+          <p>Platforms:</p>
+          <mat-form-field appearance="fill">
+            <mat-label>Add Platform</mat-label>
+            <mat-select #selectPlatforms [formControl]="platforms" multiple>
+              <mat-option *ngFor="let platform of platformsList" [value]="platform">
+                {{ platform }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="button-div">
+          <button type="submit" id="saveBtn">Save</button>
+          <button class="delete-btn hidden-pop" type="button" (click)="deleteGame(this.lastGame)">
+            <mat-icon class="icon">delete</mat-icon>
+          </button>
+          <div class="x" (click)="reset()" type="submit">X</div>
+        </div>
+        </form>
+        <!-- <div class="button-div">
+          <button class="delete-btn hidden-pop" (click)="deleteGame(this.lastGame)">
+            <mat-icon class="icon">delete</mat-icon>
+          </button>
+        </div> -->
+      </div>
+  </div>
+  <div>
+    <app-import-from-file></app-import-from-file>
+  </div>
+  <div id="table-div">
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Platform</th>
+        <!-- <th>Like</th> -->
+        <!-- <th>Dislike</th> -->
+        <th>Studio</th>
+        <!-- <th>Release</th> -->
+        <!-- <th>Delete</th> -->
+      </thead>
+      <tbody>
+        <tr (click)="getGame(i)" *ngFor="let i of lista" [class.recently-clicked-tr]="recentlyClickedRow === i">
+          <td>{{ i.name }}</td>
+          <td>{{ parseList(i.category) }}</td>
+          <td>{{ parseList(i.platforms) }}</td>
+          <!-- <td>9999{{ i.likeCount }}</td> -->
+          <!-- <td>9999{{ i.dislikeCount }}</td> -->
+          <td>{{ i.studio }}</td>
+          <!-- <td>2022-22-22{{ i.releaseDate }}</td> -->
+          <!-- <td><button (click)="deleteGame(i)">
+            <mat-icon class="icon">delete</mat-icon>
+            <span class="button-text">Delete</span>
+        </button></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

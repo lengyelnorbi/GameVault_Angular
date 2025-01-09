@@ -1,0 +1,121 @@
+<app-navigation></app-navigation>
+
+<div class="parent-container">
+  <div class="searchbar-container">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input class="searchbar" type="text" name="search" [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange()" placeholder="Search...">
+  </div>
+</div>
+<div class="filter-container">
+  <div class="filter-block">
+    <mat-form-field appearance="fill" class="selector-container">
+      <mat-label>Search By Platform(s)</mat-label>
+      <mat-select #selectPlatforms [(ngModel)]="searchPlatforms" (ngModelChange)="onPlatformSelected($event)" multiple>
+        <mat-option value="All">All</mat-option>
+        <mat-option value="Clear">Clear</mat-option>
+        <mat-option *ngFor="let platform of platformsList" [value]="platform">
+          {{ platform }}
+        </mat-option>
+      </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="number-container">
+        <mat-label>Minimum Platform Match</mat-label>
+        <mat-select #selectPlatforms [(ngModel)]="selectedNumberPlat" (ngModelChange)="onPlatformNumberSelected($event)">
+          <mat-option *ngFor="let numberPlat of platformNumbers" [value]="numberPlat">
+            {{ numberPlat }}
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
+  </div>
+  <div class="filter-block">
+    <mat-form-field appearance="fill" class="selector-container">
+      <mat-label>Search By Category(ies)</mat-label>
+      <mat-select #selectPlatforms [(ngModel)]="searchCategories" (ngModelChange)="onCategorySelected($event)" multiple>
+        <mat-option value="All">All</mat-option>
+        <mat-option value="Favourites" *ngIf="authService.currentUser$ | async as user">Favourites</mat-option>
+        <mat-option value="Clear">Clear</mat-option>
+        <mat-option *ngFor="let genre of genresList" [value]="genre">
+          {{ genre }}
+        </mat-option>
+      </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="number-container">
+        <mat-label>Minimum Category Match</mat-label>
+        <mat-select #selectPlatforms [(ngModel)]="selectedNumberCat" (ngModelChange)="onCategoryNumberSelected($event)">
+          <mat-option *ngFor="let numberCat of categoriesNumbers" [value]="numberCat">
+            {{ numberCat }}
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
+  </div>
+  <div class="filter-block">
+    <mat-form-field appearance="fill" class="selector-container">
+      <mat-label>Sort</mat-label>
+      <mat-select #selectPlatforms [(ngModel)]="selectedSort" (ngModelChange)="onSortSelected($event)">
+        <mat-option *ngFor="let sort of sortingList" [value]="sort">
+          {{ sort }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="number-container">
+      <mat-label>Order</mat-label>
+      <mat-select #selectPlatforms [(ngModel)]="selectedOrder" (ngModelChange)="onOrderSelected($event)">
+        <mat-option value="default" selected>Default</mat-option>
+        <mat-option value="ascending">Ascending</mat-option>
+        <mat-option value="descending">Descending</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="filter-block">
+    <button mat-raised-button color="primary" class="filter-button" style="height: 5.5vh; font-family: 'Azonix Regular', sans-serif; z-index: 0; background-color: hsl(40, 100%, 62%);"(click)="filterReset()">
+      <mat-icon style="font-size: 20px;">refresh</mat-icon>
+      Filter Reset
+    </button>
+    
+  </div>
+</div>
+<div class="game-list-container">
+  <div class="game-list">
+    <div *ngFor="let game of pageSlice" >
+      <mat-card [routerLink]="['/game', game.id, game.name]" class="card game-border" (mouseleave)="hideButton(game) " (mouseover)="showButton(game)  ">
+        <div class="image-container">
+          <img mat-card-image src={{game.imageUrl}} class="game-image"/>
+          <ng-container *ngIf="showButtonFlag[game.id]">
+            <div class="percent">
+              <ng-container *ngIf="getGamePercent(game)">
+                <count-up [countUp]="getGamePercent(game)" [ngStyle]="{'color': getColor(getGamePercent(game))}" duration="1"></count-up>
+                <span  [ngStyle]="{'color': getColor(getGamePercent(game))}">%</span>
+                <br>
+                <div class="icon-container">
+                  <span class="icon-span"> <count-up [countUp]="getGameLike(game)" duration="1"></count-up></span><mat-icon  class="icon"  id="like">thumb_up</mat-icon>
+                </div>
+                <div class="icon-container">
+                  <span class="icon-span"><count-up [countUp]="getGameDisLike(game)" duration="1"></count-up></span><mat-icon  class="icon"  id="dislike">thumb_down</mat-icon>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="!getGamePercent(game)"  >
+                <span [ngStyle]="{'color': 'white'}">NaN</span>
+              </ng-container>
+            </div>
+            
+          </ng-container>
+          <button *ngIf="showButtonFlag[game.id] && !checkIfCompletedGame(game)" (click)="buttonClicked(game, $event)" id="gameButton"><mat-icon class="icon"  id="completed">check_circle</mat-icon></button>
+          <button *ngIf="showButtonFlag[game.id] && checkIfCompletedGame(game)" (click)="buttonClicked(game, $event)" id="gameButton" class="yellow"><mat-icon class="icon"  id="completed">check_circle</mat-icon></button>
+        
+          <button *ngIf="showButtonFlag[game.id] && !checkIfWantedPlay(game)" (click)="wantButton(game, $event)" id="wantButton"><mat-icon  class="icon"  id="plan">date_range</mat-icon></button>
+          <button *ngIf="showButtonFlag[game.id] && checkIfWantedPlay(game)" (click)="wantButton(game, $event)" id="wantButton" class="yellow"><mat-icon  class="icon"  id="plan">date_range</mat-icon></button>
+          <button *ngIf="showButtonFlag[game.id]" class="fav" (click)="toggleFavorite(game.id, $event)" [ngClass]="{'favorite-active': isFavorite(game.id)}"><mat-icon class="icon">favorite</mat-icon></button>
+        </div>
+        <mat-card-footer>
+          <div class="game-title">{{game.name}}</div>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<div class="pagination-container">
+  <mat-paginator [length]="pageLength" [pageSize]="pSize" [pageSizeOptions]="[8, 12, 16, 18]" (page)="OnPageChange($event)">
+
+  </mat-paginator>
+</div>
+

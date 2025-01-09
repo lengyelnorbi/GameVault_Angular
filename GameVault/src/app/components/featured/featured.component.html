@@ -1,0 +1,195 @@
+<app-navigation></app-navigation>
+      <div class="slot">
+        <div class="slot-title-container">
+          <div class="slot-tilte">
+            GAMES YOU MIGHT LIKE
+          </div>
+        </div>
+        <swiper class="swiper-slot shadow costum-border-left" [autoHeight]="true" [slidesPerView]="6" [spaceBetween]="30"  
+        [pagination]="{ clickable: true }" [watchSlidesProgress]="true" [autoplay]="{ delay: 3000, disableOnInteraction: false }">
+        <div class="card-container">
+          <ng-template class="swiper-slide" swiperSlide *ngFor="let game of recommendedList">
+            <mat-card [routerLink]="['/game', game.id, game.name]" class="card game-border">
+              <div class="image-container">
+                <img mat-card-image src={{game.imageUrl}}/>
+              </div>
+              <mat-card-content>
+                <div class="game-title">{{game.name}}</div>
+              </mat-card-content>
+            </mat-card>
+          </ng-template>
+        </div>
+        
+      </swiper>
+      
+      </div>
+      <div class="slot" id="top">
+        <div class="slot-title-container">
+          <div class="slot-tilte">
+            TOP RATED GAMES
+          </div>
+        </div>
+        <swiper class="swiper-slot shadow costum-border-right" [autoHeight]="true" [slidesPerView]="6" [spaceBetween]="30"  
+        [pagination]="{ clickable: true }" [watchSlidesProgress]="true" [autoplay]="{ delay: 3000, disableOnInteraction: false }">
+        <div class="card-container">
+          <ng-template class="swiper-slide" swiperSlide *ngFor="let game of gameList">
+            <mat-card [routerLink]="['/game', game.id, game.name]" class="card game-border">
+              <div class="image-container">
+                <img mat-card-image src={{game.imageUrl}}/>
+              </div>
+              <mat-card-content>
+                <div class="game-title">{{game.name}}</div>
+              </mat-card-content>
+    
+             
+              <div class="game-recent-day">
+                <p>Likes: {{game.likeCount}}</p>
+              </div>
+            </mat-card>
+          </ng-template>
+        </div>
+        
+      </swiper>
+      </div>
+
+      <div class="slot">
+        <div class="slot-title-container">
+          <div class="slot-tilte">
+            RECENTLY RELEASED GAMES
+          </div>
+        </div>
+        <swiper class="swiper-slot shadow costum-border-left" [autoHeight]="true" [slidesPerView]="6" [spaceBetween]="30"  
+        [pagination]="{ clickable: true }" [watchSlidesProgress]="true" [autoplay]="{ delay: 3000, disableOnInteraction: false }">
+        <div class="card-container">
+          <ng-template class="swiper-slide" swiperSlide *ngFor="let game of gameRecentlyReleasedList">
+            <mat-card [routerLink]="['/game', game.id, game.name]" class="card game-border">
+          <div class="image-container">
+            <img mat-card-image src={{game.imageUrl}}/>
+          </div>
+          <mat-card-content>
+            <div class="game-title">{{game.name}}</div>
+          </mat-card-content>
+          <div class="game-recent-day">
+            <p>Release Date: {{game.releaseDate ==  currentDate.toISOString().slice(0,10) ? "Today" : game.releaseDate }}</p>
+          </div>
+        </mat-card>
+          </ng-template>
+        </div>
+        
+      </swiper>
+      </div>
+
+      <div class="slot">
+        <div class="slot-title-container">
+          <div class="slot-tilte">
+            UPCOMING GAMES
+          </div>
+        </div>
+        <swiper class="swiper-slot shadow costum-border-right"  [autoHeight]="true" [slidesPerView]="6" [spaceBetween]="30"  
+        [pagination]="{ clickable: true }" [watchSlidesProgress]="true" [autoplay]="{ delay: 3000, disableOnInteraction: false }">
+        <div class="card-container">
+          <ng-template class="swiper-slide" swiperSlide *ngFor="let game of gameUpcomingList">
+            <mat-card [routerLink]="['/game', game.id, game.name]" class="card game-border">
+              <div class="image-container">
+                <img mat-card-image src={{game.imageUrl}}/>
+              </div>
+              <mat-card-content>
+                <div class="game-title">{{game.name}}</div>
+              </mat-card-content>
+              <div class="game-recent-day">
+                <p>{{game.releaseDate ==  currentDate.toISOString().slice(0,10) ? "Today" :  "in " + calculate(game.releaseDate) + " Days" }}</p>
+              </div>
+            </mat-card>
+          </ng-template>
+        </div>
+        
+      </swiper>
+      </div>
+      <app-leaderboard></app-leaderboard>
+<!--
+
+<div class="game-container">
+        <mat-card *ngFor="let game of recommendedList" [routerLink]="['/game', game.id, game.name]" class="card game-border">
+          <div class="image-container">
+            <img mat-card-image src={{game.imageUrl}}/>
+          </div>
+          <mat-card-content>
+            <div class="game-title">{{game.name}}</div>
+          </mat-card-content>
+
+         
+          <div class="game-rec-day">
+            <p>{{game.category}}</p>
+          </div>
+        </mat-card>
+      </div>
+
+<div class="top-games">
+  <h1 class="featured-header">Top Rated Games:</h1>
+
+  <div class="container-top">
+    <div class="game-container">
+      <div *ngFor="let game of gameList" class="game-items">
+        <mat-card [routerLink]="['/game', game.id, game.name]" class="card game-border">
+          <div class="image-container">
+            <img mat-card-image src={{game.imageUrl}}/>
+          </div>
+          <mat-card-content>
+            <div class="game-title">{{game.name}}</div>
+          </mat-card-content>
+
+         
+          <div class="game-recent-day">
+            <p>Likes: {{game.likeCount}}</p>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="recently-released-games">
+  <h1 class="featured-header">Recently Released Games:</h1>
+
+  <div class="container-recently-released">
+    <div class="game-container-recently-released">
+      <div *ngFor="let game of gameRecentlyReleasedList" class="game-items">
+        <mat-card [routerLink]="['/game', game.id, game.name]" class="card game-border">
+          <div class="image-container">
+            <img mat-card-image src={{game.imageUrl}}/>
+          </div>
+          <mat-card-content>
+            <div class="game-title">{{game.name}}</div>
+          </mat-card-content>
+          <div class="game-recent-day">
+            <p>Release Date: {{game.releaseDate ==  currentDate.toISOString().slice(0,10) ? "Today" : game.releaseDate }}</p>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="recent-games">
+  <h1 class="featured-header-recent">Upcoming Games:</h1>
+
+  <div class="container-recent">
+    <div class="game-container-recent">
+      <div *ngFor="let game of gameUpcomingList" class="game-items">
+        <mat-card [routerLink]="['/game', game.id, game.name]" class="card game-border">
+          <div class="image-container">
+            <img mat-card-image src={{game.imageUrl}}/>
+          </div>
+          <mat-card-content>
+            <div class="game-title">{{game.name}}</div>
+          </mat-card-content>
+          <div class="game-recent-day">
+            <p>{{game.releaseDate ==  currentDate.toISOString().slice(0,10) ? "Today" :  "in " + calculate(game.releaseDate) + " Days" }}</p>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
